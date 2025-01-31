@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/youtube', {
+mongoose.connect('mongodb+srv://admin:Ramram123@cluster0.7vmdf.mongodb.net/restaurent', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -38,15 +38,15 @@ const reservationSchema = new mongoose.Schema({
 const Reservation = mongoose.model('Reservation', reservationSchema);
 
 // Routes
-app.post('/reservations', async (req, res) => {
-    try {
-        const reservation = new Reservation(req.body);
-        await reservation.save();
-        res.status(201).json({ message: 'Reservation created successfully!' });
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to create reservation.' });
-    }
-});
+// app.post('/reservations', async (req, res) => {
+//     try {
+//         const reservation = new Reservation(req.body);
+//         await reservation.save();
+//         res.status(201).json({ message: 'Reservation created successfully!' });
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to create reservation.' });
+//     }
+// });
 
 
 
@@ -114,6 +114,7 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Error logging in' });
     }
 });
+
 
 // Middleware to authenticate JWT token
 const authenticateJWT = (req, res, next) => {
